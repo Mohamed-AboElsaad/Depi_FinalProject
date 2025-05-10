@@ -33,6 +33,7 @@ public class HomePage extends BasePage {
     By viewCartButton = By.xpath("//u[normalize-space()='View Cart']");
     By viewProductButton = By.xpath("//ul[@class='nav nav-pills nav-justified']//a[contains(@href,'product_details')]");
 
+    By logoutButton = By.xpath("//a[normalize-space()='Logout']");
     By addToCartButton = By.xpath("//a[@class='btn btn-default add-to-cart']");
     By subscriptionField = By.xpath("//input[@placeholder='Your email address']");
     By subscriptionTitle = By.xpath("//h2[normalize-space()='Subscription']");
@@ -98,11 +99,15 @@ public class HomePage extends BasePage {
 
 // Methods Section
     /* Top Section Methods*/
+    public boolean checkLogOutButtonDisplay(){
+        waitUntilElementIsVisible(logoutButton,5);
+        return checkingDisplay(logoutButton);
+    }
    public boolean checkHomePageTitle(){
    return checkingDisplay(pageTitle);
    }
     public String checkHomePageTitleValue(){
-        return GetTitle();
+        return getTitle();
     }
     public boolean checkLogo(){
         return checkingDisplay(pageLogo);

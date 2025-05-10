@@ -10,7 +10,11 @@ public class Cart extends BasePage{
     }
 
     By checkOutButton = By.xpath("//a[@class='btn btn-default check_out']");
-
+    By cartPageTitle = By.xpath("//li[@class='active']");
+    public String checkCartPageTitleValue(){
+        waitUntilElementIsVisible(cartPageTitle,5);
+        return getTitle();
+    }
     public boolean checkOutButtonDisplay(){
         waitUntilElementIsVisible(checkOutButton,5);
         return checkingDisplay(checkOutButton);

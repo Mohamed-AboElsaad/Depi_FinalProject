@@ -144,16 +144,16 @@ public class HomePageTest extends BaseTest {
         homePage.clickAddToCart();
     }
 
-    @Test(priority = 3)
-    public void Validate_User_Can_SignUp(){
-        homePage = new HomePage(driver);
-        homePage.clickOnSignUpPage();
-    }
+//    @Test(priority = 3)
+//    public void Validate_User_Can_SignUp(){
+//        homePage = new HomePage(driver);
+//        homePage.clickOnSignUpPage();
+//    }
 
-    @Test(priority = 4)
-    public void Validate_User_Can_See_Cart(){
-
-    }
+//    @Test(priority = 4)
+//    public void Validate_User_Can_See_Cart(){
+//
+//    }
 
     @Test(priority = 5)
     public void Test_To_Fail(){

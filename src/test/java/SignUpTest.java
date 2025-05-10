@@ -12,19 +12,25 @@ public class SignUpTest extends BaseTest{
     SoftAssert softAssert;
     HomePage homePage;
 
-    @DataProvider(name="Data")
+    @DataProvider(name="SignUpData")
     public static Object [][] credentials() throws IOException {
         ExcelReader excelReader = new ExcelReader();
         return excelReader.getExcelData(0,2, "src/main/resources/ValidData.xlsx");
     }
+    @DataProvider(name="SignUpDataModal")
+    public static Object [][] SignUpModal() throws IOException {
+        ExcelReader excelReader = new ExcelReader();
+        return excelReader.getExcelData(1,9, "src/main/resources/ValidData.xlsx");
+    }
 
-    @Test(priority = 0,dataProvider = "Data")
+    @Test(priority = 0,dataProvider = "SignUpData")
     public void Validate_User_Can_SignUp(String name,String email){
         sign= new SignUp(driver);
         homePage = new HomePage(driver);
         softAssert = new SoftAssert();
 
         homePage.clickOnSignUpPage();
+        Assert.assertEquals(sign.checkSignUpPageTitleValue(),"Automation Exercise - Signup / Login");
         Assert.assertTrue(sign.signUpMessageDisplay());
         softAssert.assertEquals(sign.signUpMessageValue(),"New User Signup!");
         softAssert.assertTrue(sign.nameFieldDisplay());
@@ -34,5 +40,35 @@ public class SignUpTest extends BaseTest{
         sign.setNameField(name);
         sign.setEmailAddressField(email);
         sign.clickOnSignCTA();
+    }
+
+    @Test(priority = 1,dataProvider = "SignUpDataModal")
+    public void fillingSignUPModel(String pass, String fname, String lname, String company, String address1, String state, String city, String zipcode, String mobileNum){
+        sign= new SignUp(driver);
+        homePage = new HomePage(driver);
+        softAssert = new SoftAssert();
+
+// In Sign up Model
+        Assert.assertEquals(sign.checkModelTitleValue(),"Automation Exercise - Signup");
+        sign.clickOnMrRadioButton();
+        sign.setPasswordField(pass);
+        sign.setDayList();
+        sign.setMonthsList();
+        sign.setYearList();
+        sign.setFirstNameField(fname);
+        sign.setLastNameField(lname);
+        sign.setCompanyNameField(company);
+        sign.setAddress1Field(address1);
+        sign.setCountryList();
+        sign.setStateField(state);
+        sign.setCityField(city);
+        sign.setZipCodeField(zipcode);
+        sign.setMobileNumField(mobileNum);
+        sign.clickOnCreateAccountCTA();
+
+        Assert.assertTrue(sign.checkAccountCreatedMessageDisplay());
+        softAssert.assertEquals(sign.accountCreatedMessageValue(),"Account Created!");
+        sign.clickOnContinueButton();
+
     }
 }

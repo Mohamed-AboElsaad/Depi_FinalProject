@@ -54,7 +54,7 @@ public class BasePage {
         return driver.findElement(by).getText();
     }
 
-    public String GetTitle() {
+    public String getTitle() {
         return driver.getTitle();
     }
 
@@ -122,7 +122,7 @@ public class BasePage {
     public void clearTextField(By by){
         driver.findElement(by).clear();
     }
-    public void SelectFromDropDownList(By by,String value){
+    public void selectFromDropDownList(By by, String value){
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         Select dropDown = new Select(driver.findElement(by));
