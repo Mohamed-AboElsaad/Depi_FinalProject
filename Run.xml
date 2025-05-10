@@ -1,14 +1,13 @@
-<!--<suite name ="Suite1">-->
-<!--    <test name="Authentication">-->
-<!--        <classes>-->
-<!--            <class name =""/>-->
-<!--            <class name=""/>-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--    <test name="Buying">-->
-<!--        <classes>-->
-<!--            <class name=""/>-->
-<!--            <class name=""/>-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--</suite>-->
+<suite name ="E2E E-commerce Web Testing">
+    <test name="Authentication">
+        <classes>
+            <class name ="HomePageTest"/>
+        </classes>
+    </test>
+    <test name="E2E">
+        <classes>
+            <class name="SignUpTest"/>
+            <class name="CartTest"/>
+        </classes>
+    </test>
+</suite>
