@@ -135,7 +135,8 @@ public class HomePageTest extends BaseTest {
 
 //Brands Section
     homePage.clickOnBrandsOptions();//Include Page Title Assertion to ensure the right page is opened
-    homePage.clickOnYoutubeIcon();
+//    homePage.clickOnYoutubeIcon();
+    homePage.clickOnHomeButton();
     }
 
     @Test(priority = 2)

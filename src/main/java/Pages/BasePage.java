@@ -126,9 +126,9 @@ public class BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         Select dropDown = new Select(driver.findElement(by));
-        dropDown.selectByValue(value);
+//        dropDown.selectByValue(value);
 //        dropDown.selectByIndex();
-//        dropDown.selectByVisibleText();
+        dropDown.selectByVisibleText(value);
     }
     public void scrollTo(By by){
         action = new Actions(driver);

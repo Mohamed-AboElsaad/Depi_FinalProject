@@ -9,7 +9,7 @@ public class CartTest extends BaseTest{
     HomePage homePage;
 
     @Test(priority = 0)
-    public void Validate_User_Can_CheckOut(){
+    public void Validate_User_Can_See_Cart(){
         cart = new Cart(driver);
         softAssert = new SoftAssert();
         homePage = new HomePage(driver);
@@ -20,6 +20,11 @@ public class CartTest extends BaseTest{
        softAssert.assertTrue(cart.checkOutButtonDisplay());
        softAssert.assertEquals(cart.checkOutButtonValue(),"Proceed To Checkout");
         cart.clickOnCheckOutCTA();
+    }
+
+    @Test(priority = 1)
+    public void Validate_That_User_Can_Checkout(){
+
     }
 
 }

@@ -22,6 +22,11 @@ public class SignUpTest extends BaseTest{
         ExcelReader excelReader = new ExcelReader();
         return excelReader.getExcelData(1,9, "src/main/resources/ValidData.xlsx");
     }
+    @DataProvider(name="Login")
+    public static Object [][] LogIn() throws IOException {
+        ExcelReader excelReader = new ExcelReader();
+        return excelReader.getExcelData(2,2, "src/main/resources/ValidData.xlsx");
+    }
 
     @Test(priority = 0,dataProvider = "SignUpData")
     public void Validate_User_Can_SignUp(String name,String email){
@@ -70,5 +75,20 @@ public class SignUpTest extends BaseTest{
         softAssert.assertEquals(sign.accountCreatedMessageValue(),"Account Created!");
         sign.clickOnContinueButton();
 
+    }
+    @Test(priority = 2,dataProvider = "Login")
+    public void Validate_User_Can_Login(String email,String pass) {
+        sign = new SignUp(driver);
+        homePage = new HomePage(driver);
+        softAssert = new SoftAssert();
+
+        Assert.assertEquals(homePage.checkHomePageTitleValue(), "Automation Exercise");
+        homePage.clickOnLogoutButton();
+        Assert.assertEquals(sign.checkSignUpPageTitleValue(), "Automation Exercise - Signup / Login");
+        softAssert.assertTrue(sign.checkLoginEmailFieldDisplay());
+        softAssert.assertTrue(sign.checkLoginPassFieldDisplay());
+        sign.setLoginEmailField(email);
+        sign.setLoginPassField(pass);
+        sign.clickOnLoginCTA();
     }
 }

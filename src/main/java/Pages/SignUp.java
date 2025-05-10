@@ -33,6 +33,34 @@ public class SignUp extends BasePage{
     By accountCreatedSuccessfullyMessage = By.xpath("//b[normalize-space()='Account Created!']");
     By continueButton = By.xpath("//a[@class='btn btn-primary']");
 
+// Log in Locators
+    By loginEmailField = By.xpath("//input[@data-qa='login-email']");
+    By loginPassField = By.xpath("//input[@placeholder='Password']");
+    By loginCTA = By.xpath("//button[normalize-space()='Login']");
+
+
+
+    public boolean checkLoginEmailFieldDisplay(){
+        waitUntilElementIsVisible(loginEmailField,5);
+        return checkingDisplay(loginEmailField);
+    }
+    public boolean checkLoginPassFieldDisplay(){
+        waitUntilElementIsVisible(loginPassField,5);
+        return checkingDisplay(loginPassField);
+    }
+    public void setLoginEmailField(String loginEmail){
+        waitUntilElementIsVisible(loginEmailField,5);
+        setText(loginEmailField,loginEmail);
+    }
+    public void setLoginPassField(String loginPass){
+        waitUntilElementIsVisible(loginPassField,5);
+        setText(loginPassField,loginPass);
+    }
+    public void clickOnLoginCTA(){
+        waitUntilElementIsClickable(loginCTA,5);
+        clickOn(loginCTA);
+    }
+
     public String checkSignUpPageTitleValue(){
         waitUntilElementIsVisible(signUpMessage,5);
         return getTitle();

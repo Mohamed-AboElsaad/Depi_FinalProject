@@ -34,6 +34,7 @@ public class HomePage extends BasePage {
     By viewProductButton = By.xpath("//ul[@class='nav nav-pills nav-justified']//a[contains(@href,'product_details')]");
 
     By logoutButton = By.xpath("//a[normalize-space()='Logout']");
+    By deleteAccButton = By.xpath("//a[normalize-space()='Delete Account']");
     By addToCartButton = By.xpath("//a[@class='btn btn-default add-to-cart']");
     By subscriptionField = By.xpath("//input[@placeholder='Your email address']");
     By subscriptionTitle = By.xpath("//h2[normalize-space()='Subscription']");
@@ -102,6 +103,18 @@ public class HomePage extends BasePage {
     public boolean checkLogOutButtonDisplay(){
         waitUntilElementIsVisible(logoutButton,5);
         return checkingDisplay(logoutButton);
+    }
+    public void clickOnLogoutButton(){
+        waitUntilElementIsClickable(logoutButton,5);
+        clickOn(logoutButton);
+    }
+    public boolean checkDeleteAccButtonDisplay(){
+        waitUntilElementIsVisible(deleteAccButton,5);
+        return checkingDisplay(deleteAccButton);
+    }
+    public void clickOnDeleteAccButton(){
+        waitUntilElementIsClickable(deleteAccButton,5);
+        clickOn(deleteAccButton);
     }
    public boolean checkHomePageTitle(){
    return checkingDisplay(pageTitle);
