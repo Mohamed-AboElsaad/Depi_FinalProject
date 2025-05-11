@@ -3,12 +3,10 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class SignUp extends BasePage{
-
+public class SignUp extends BasePage {
     public SignUp(WebDriver driver) {
         super(driver);
     }
-
     By signUpMessage = By.xpath("//h2[normalize-space()='New User Signup!']");
     By nameField = By.xpath("//input[@placeholder='Name']");
     By emailAddressField = By.xpath("//input[@data-qa='signup-email']");
