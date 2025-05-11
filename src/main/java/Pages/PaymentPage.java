@@ -15,7 +15,7 @@ public class PaymentPage extends BasePage {
     private final By expiryMonth = By.name("expiry_month");
     private final By expiryYear = By.name("expiry_year");
     private final By payBtn = By.id("submit");
-    private final By successMsg = By.xpath("//div[contains(@class,'alert-success')]");
+    private final By successMsg = By.xpath("//*[@id=\"form\"]/div/div/div/h2/b");
 
     // Methods
     public void enterPaymentDetails(String name, String number, String cvcNum, String month, String year) {
@@ -31,6 +31,7 @@ public class PaymentPage extends BasePage {
     }
 
     public boolean isPaymentSuccessful() {
+        waitUntilElementIsVisible(successMsg,5);
         return checkingDisplay(successMsg);
     }
 }

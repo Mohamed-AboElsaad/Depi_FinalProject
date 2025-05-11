@@ -17,10 +17,12 @@ public class CheckoutPage extends BasePage {
 
     // Methods
     public boolean verifyAddressesDisplayed() {
+       waitUntilElementIsVisible(deliveryAddress,6);
         return checkingDisplay(deliveryAddress) && checkingDisplay(billingAddress);
     }
 
     public void addOrderComment(String comment) {
+        waitUntilElementIsVisible(commentField,5);
         setText(commentField, comment);
     }
 

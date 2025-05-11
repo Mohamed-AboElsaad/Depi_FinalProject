@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class EndToEndTest extends BaseTest {
 
     @Test
-    public void testCompleteUserJourney() {
+    public void testCompleteUserJourney() throws InterruptedException {
         // Initialize all page objects
         HomePage homePage = new HomePage(driver);
         SignUp signUpPage = new SignUp(driver);
@@ -43,8 +43,8 @@ public class EndToEndTest extends BaseTest {
 
         // 4. Add product to cart
 //        homePage.clickOnHomeButton();
-        homePage.clickViewProduct();
-        productPage.setQuantity(4);
+        homePage.clickViewProduct((int) (Math.random() * 34));
+        productPage.setQuantity((int) (Math.random() * 10));
         productPage.clickAddToCart();
         productPage.clickViewCart();
 
@@ -53,7 +53,17 @@ public class EndToEndTest extends BaseTest {
 
         // 6. Verify checkout and place order
         checkoutPage.verifyAddressesDisplayed();
-        checkoutPage.addOrderComment("Test order please ignore");
+        checkoutPage.addOrderComment("• • • • • • • • • • • • • • • • • • • • • •\n" +
+                "• M • O • S • T •   • S • U • C • C • E • S • S • F • U • L •\n" +
+                "•   • T • E • S • T •   • C • A • S • E •   •\n" +
+                "• • • • • • • • • • • • • • • • • • • • • •\n" +
+                "\n" +
+                "• F • O • R •   • B • E • S • T •   • H • A • P • P • Y •\n" +
+                "•   • S • C • E • N • A • R • I • O •   •\n" +
+                "• • • • • • • • • • • • • • • • • • • • • •\n" +
+                "\n" +
+                "⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫ • D • R • E • A • M •   • T • E • A • M • ⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫");
+        Thread.sleep(2000);
         checkoutPage.clickPlaceOrder();
 
         // 7. Complete payment

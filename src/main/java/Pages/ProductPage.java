@@ -56,6 +56,7 @@ public class ProductPage extends BasePage {
     }
 
     public void setQuantity(int quantity) {
+        waitUntilElementIsVisible(quantityInput,5);
         clear(quantityInput);
         setText(quantityInput, String.valueOf(quantity));
     }

@@ -23,13 +23,13 @@
             <class name="CartTest"/>
         </classes>
     </test>
-</suite>
-<!--    <test name="Complete_E2E">-->
-<!--        <classes>-->
-<!--            <class name="EndToEndTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
 
+    <test name="Complete_E2E">
+        <classes>
+            <class name="EndToEndTest"/>
+        </classes>
+    </test>
+</suite>
 
 <!--<suite name ="E2E E-commerce Web Testing">-->
 <!--<test name="Authentication">-->

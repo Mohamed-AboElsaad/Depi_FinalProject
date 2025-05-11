@@ -232,7 +232,7 @@ public class HomePageTest extends BaseTest {
         softAssert = new SoftAssert();
 
         homePage.clickOnHomeButton();
-        softAssert.assertNotEquals(homePage.checkForWrongValue(),"Sleeveless Dress");
+        softAssert.assertEquals(homePage.checkForWrongValue(),"Sleeveless Dress");
         softAssert.assertAll();
     }
 }
