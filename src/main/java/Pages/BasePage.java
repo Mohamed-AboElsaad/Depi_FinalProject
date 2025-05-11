@@ -11,9 +11,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-//**Methods are put here**//All Classes inherit from this one//
 public class BasePage {
-
     private WebDriver driver;
     private WebDriverWait wait;
     private Actions action;
