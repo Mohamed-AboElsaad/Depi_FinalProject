@@ -1,13 +1,32 @@
-<suite name ="E2E E-commerce Web Testing">
-    <test name="Authentication">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SwagLabs_DEPI" verbose="1">
+    <test name="UI_Validation">
         <classes>
-            <class name ="HomePageTest"/>
+            <class name="Tests.HomePageTest"/>
         </classes>
     </test>
-    <test name="E2E">
+
+    <test name="Authentication">
         <classes>
-            <class name="SignUpTest"/>
-            <class name="CartTest"/>
+            <class name="Tests.SignUpTest"/>
+        </classes>
+    </test>
+
+    <test name="Product_Tests">
+        <classes>
+            <class name="Tests.ProductPageTest"/>
+        </classes>
+    </test>
+
+    <test name="Cart_Tests">
+        <classes>
+            <class name="Tests.CartTest"/>
+        </classes>
+    </test>
+
+    <test name="Complete_E2E">
+        <classes>
+            <class name="Tests.EndToEndTest"/>
         </classes>
     </test>
 </suite>
