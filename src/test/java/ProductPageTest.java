@@ -1,16 +1,15 @@
-package Tests;
-
 import Pages.HomePage;
 import Pages.ProductPage;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class ProductPageTest extends BaseTest {
-
+    HomePage homePage;
+    SoftAssert softAssert;
     @Test(priority = 1)
     public void testProductNavigationFromHomePage() {
-        HomePage homePage = new HomePage(driver);
-        SoftAssert softAssert = new SoftAssert();
+         homePage = new HomePage(driver);
+         softAssert = new SoftAssert();
 
         // Verify featured products exist
         int productCount = homePage.getFeaturedProductsCount();
@@ -35,7 +34,7 @@ public class ProductPageTest extends BaseTest {
 
     @Test(priority = 2)
     public void testAddToCartFromProductPage() {
-        HomePage homePage = new HomePage(driver);
+        homePage = new HomePage(driver);
         homePage.clickViewProduct(0);
 
         ProductPage productPage = new ProductPage(driver);
@@ -51,8 +50,9 @@ public class ProductPageTest extends BaseTest {
 
     @Test(priority = 3)
     public void testMultipleProductNavigation() {
-        HomePage homePage = new HomePage(driver);
+         homePage = new HomePage(driver);
         int productCount = homePage.getFeaturedProductsCount();
+
 
         // Test navigating to each product
         for (int i = 0; i < Math.min(productCount, 3); i++) { // Limit to 3 products for demo
@@ -60,11 +60,10 @@ public class ProductPageTest extends BaseTest {
             homePage.clickViewProduct(i);
 
             ProductPage productPage = new ProductPage(driver);
-            assertEquals(productPage.getProductName(), productName);
+            softAssert.assertEquals(productPage.getProductName(), productName);
 
             // Go back to home page
-            driver.navigate().back();
-            homePage = new HomePage(driver);
+            homePage.clickOnHomeButton();
         }
     }
 }

@@ -1,12 +1,16 @@
 import Pages.Cart;
 import Pages.HomePage;
+import Pages.SignUp;
+import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class CartTest extends BaseTest {
+public class CartTest extends BaseTest{
     Cart cart;
     SoftAssert softAssert;
     HomePage homePage;
+    SignUp sign;
 
     @Test(priority = 0)
     public void Validate_User_Can_See_Cart() {
@@ -15,27 +19,36 @@ public class CartTest extends BaseTest {
         homePage = new HomePage(driver);
 
         homePage.clickOnCartPage();
-        System.out.println(cart.checkCartPageTitleValue());
-        softAssert.assertEquals(cart.checkCartPageTitleValue(), "Automation Exercise - Checkout");
-        softAssert.assertTrue(cart.checkOutButtonDisplay());
-        softAssert.assertEquals(cart.checkOutButtonValue(), "Proceed To Checkout");
+//        System.out.println(cart.checkCartPageTitleValue());
+        softAssert.assertEquals(cart.checkCartPageTitleValue(),"Automation Exercise - Checkout");
+       softAssert.assertTrue(cart.checkOutButtonDisplay());
+       softAssert.assertEquals(cart.checkOutButtonValue(),"Proceed To Checkout");
         cart.clickOnCheckOutCTA();
         softAssert.assertAll();
     }
 
     @Test(priority = 1)
-    public void Validate_That_User_Can_Checkout() {
+    public void Validate_That_User_Can_Checkout(){
         cart = new Cart(driver);
+        sign = new SignUp(driver);
         homePage = new HomePage(driver);
-        
+        softAssert = new SoftAssert();
+
+        Assert.assertTrue(cart.checkCheckoutTitleDisplay());
         cart.addOrderComment("Test order");
         cart.clickPlaceOrder();
+        Assert.assertTrue(cart.checkPaymentPageTitleDisplay());
+        softAssert.assertEquals(cart.checkPaymentPageTitleValue(),"Payment");
         cart.enterPaymentDetails("Test User", "4111111111111111", "123", "12", "2025");
-        cart.clickPayButton();
-        
-        softAssert.assertTrue(cart.checkingDisplay(
-            By.xpath("//b[normalize-space()='Order Placed!']")), 
-            "Order success message not displayed");
+        cart.clickOnPayButton();
+
+        Assert.assertEquals(cart.checkOrderPlacedSuccessfullyMessageValue(),"Order Placed!".toUpperCase());
+        softAssert.assertTrue(cart.checkDownloadInvoiceCTADisplay());
+        cart.clickOnContinueButton();
+        homePage.clickOnDeleteAccButton();
+        Assert.assertTrue(cart.checkAccountDeletedMessageDisplay());
+        softAssert.assertEquals(cart.checkAccountDeletedMessageValue(),"Account Deleted!".toUpperCase());
+        cart.clickOnContinueButton();
         softAssert.assertAll();
     }
 }

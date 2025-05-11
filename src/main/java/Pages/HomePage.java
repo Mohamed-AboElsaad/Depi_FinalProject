@@ -28,14 +28,14 @@ public class HomePage extends BasePage {
     By recommendedItemsTitle = By.xpath("//h2[normalize-space()='recommended items']");
     By recommendedItemButtonParameter = By.xpath("/html[1]/body[1]/section[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
     By nextArrow = By.xpath("//a[@class='right recommended-item-control']//i[@class='fa fa-angle-right']");
-    By wrongValue = By.xpath("//p[normalize-space()='Rs. 1000']");
+    By wrongValue = By.xpath("//div[@class='productinfo text-center']//p[normalize-space()='Rs. 1000']");
     By continueShoppingButton = By.xpath("//button[@class='btn btn-success close-modal btn-block']");
     By viewCartButton = By.xpath("//u[normalize-space()='View Cart']");
     By viewProductButton = By.xpath("//ul[@class='nav nav-pills nav-justified']//a[contains(@href,'product_details')]");
 
     By logoutButton = By.xpath("//a[normalize-space()='Logout']");
     By deleteAccButton = By.xpath("//a[normalize-space()='Delete Account']");
-    By addToCartButton = By.xpath("//a[@class='btn btn-default add-to-cart']");
+    By addToCartButton = By.xpath("//div[@class='productinfo text-center']//a[@class='btn btn-default add-to-cart']");
     By subscriptionField = By.xpath("//input[@placeholder='Your email address']");
     By subscriptionTitle = By.xpath("//h2[normalize-space()='Subscription']");
     By underSubscriptionFieldMessage = By.xpath("//div[@class='footer-widget']//p[1]");
@@ -117,13 +117,15 @@ public class HomePage extends BasePage {
         clickOn(deleteAccButton);
     }
    public boolean checkHomePageTitle(){
-   return checkingDisplay(pageTitle);
+   waitUntilElementIsVisible(pageTitle,10);
+    return checkingDisplay(pageTitle);
    }
     public String checkHomePageTitleValue(){
         return getTitle();
     }
     public boolean checkLogo(){
-        return checkingDisplay(pageLogo);
+    waitUntilElementIsVisible(pageLogo,10);
+    return checkingDisplay(pageLogo);
     }
     public boolean checkProductsIcon(){
         return checkingDisplay(productsIcon);
@@ -210,8 +212,8 @@ public class HomePage extends BasePage {
        }
     }
     public String checkForWrongValue(){
-        scrollTo(nextArrow);
-        if (!checkingDisplay(wrongValue)){
+        scrollTo(subscriptionField);
+        if (!checkingEnabled(recommendedItemButtonParameter)){
             clickOn(nextArrow);
         }
         return getText(wrongValue);
@@ -549,9 +551,10 @@ public class HomePage extends BasePage {
                 clickOn(continueShoppingButton);
                 counter++;
             }else {
-                waitUntilElementIsVisible(viewCartButton,5);
-                clickOn(viewCartButton);
+                waitUntilElementIsVisible(signUpIcon,5);
+                clickOn(signUpIconValue);
             }
+            if (counter ==3) break;
         }
     }
     public void clickViewProduct() {

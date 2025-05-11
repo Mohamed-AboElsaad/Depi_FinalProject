@@ -35,62 +35,62 @@ public class HomePageTest extends BaseTest {
         homePage = new HomePage(driver);
         softAssert = new SoftAssert();
 
-        Assert.assertEquals(homePage.checkHomePageTitleValue(),"Automation Exercise");
-        softAssert.assertTrue(homePage.checkHomePageTitle());
-        softAssert.assertTrue(homePage.checkLogo());
-        softAssert.assertTrue(homePage.checkProductsIcon());
-        softAssert.assertEquals(homePage.checkProductsIconValue(),"\uE8F8 Products");
-        softAssert.assertTrue(homePage.checkCartIcon());
-        softAssert.assertEquals(homePage.checkCartIconValue(),"Cart");
-        softAssert.assertTrue(homePage.checkSignUpIcon());
-        softAssert.assertEquals(homePage.checkSignUpIconValue(),"Signup / Login");
-        softAssert.assertTrue(homePage.checkContactUsIcon());
-        softAssert.assertEquals(homePage.checkContactUsIconValue(), "Contact us");
-        softAssert.assertTrue(homePage.checkYouTubeIcon());
-        softAssert.assertEquals(homePage.checkYouTubeIconValue(),"Video Tutorials");
-        softAssert.assertEquals(homePage.checkSubscriptionField(),"Your email address");
-        softAssert.assertTrue(homePage.checkSubscribeTitleDisplay());
-        softAssert.assertEquals(homePage.checkSubscribeTitleValue(),"SUBSCRIPTION");
-        softAssert.assertTrue(homePage.checkBottomSubscribeMessage());
-        softAssert.assertEquals(homePage.checkBottomSubscribeMessageValue(),"Get the most recent updates from\n" +
-                "our site and be updated your self...");
-        softAssert.assertTrue(homePage.checkSubscribeButtonDisplay());
-        softAssert.assertTrue(homePage.checkSubscribeSuccessDisplay()); //It also, Assert that Subscribe Button is Clickable
-        softAssert.assertEquals(homePage.checkSubscribeSuccessMessageValue(),"You have been successfully subscribed!");
-        softAssert.assertTrue(homePage.checkRecommendedItemsDisplay());
-        softAssert.assertEquals(homePage.checkRecommendedItemsValue(),"RECOMMENDED ITEMS");
-        homePage.searchForTheParameter(); //Assertion for existing products in Recommended Section & CLickable (Add to cart buttons, Next arrow)
+    Assert.assertEquals(homePage.checkHomePageTitleValue(),"Automation Exercise");
+    softAssert.assertTrue(homePage.checkHomePageTitle());
+    softAssert.assertTrue(homePage.checkLogo());
+    softAssert.assertTrue(homePage.checkProductsIcon());
+    softAssert.assertEquals(homePage.checkProductsIconValue(),"\uE8F8 Products");
+    softAssert.assertTrue(homePage.checkCartIcon());
+    softAssert.assertEquals(homePage.checkCartIconValue(),"Cart");
+    softAssert.assertTrue(homePage.checkSignUpIcon());
+    softAssert.assertEquals(homePage.checkSignUpIconValue(),"Signup / Login");
+    softAssert.assertTrue(homePage.checkContactUsIcon());
+    softAssert.assertEquals(homePage.checkContactUsIconValue(), "Contact us");
+    softAssert.assertTrue(homePage.checkYouTubeIcon());
+    softAssert.assertEquals(homePage.checkYouTubeIconValue(),"Video Tutorials");
+    softAssert.assertEquals(homePage.checkSubscriptionField(),"Your email address");
+    softAssert.assertTrue(homePage.checkSubscribeTitleDisplay());
+    softAssert.assertEquals(homePage.checkSubscribeTitleValue(),"SUBSCRIPTION");
+    softAssert.assertTrue(homePage.checkBottomSubscribeMessage());
+    softAssert.assertEquals(homePage.checkBottomSubscribeMessageValue(),"Get the most recent updates from\n" +
+            "our site and be updated your self...");
+    softAssert.assertTrue(homePage.checkSubscribeButtonDisplay());
+    softAssert.assertTrue(homePage.checkSubscribeSuccessDisplay()); //It also, Assert that Subscribe Button is Clickable
+    softAssert.assertEquals(homePage.checkSubscribeSuccessMessageValue(),"You have been successfully subscribed!");
+    softAssert.assertTrue(homePage.checkRecommendedItemsDisplay());
+    softAssert.assertEquals(homePage.checkRecommendedItemsValue(),"RECOMMENDED ITEMS");
+    homePage.searchForTheParameter(); //Assertion for existing products in Recommended Section & CLickable (Add to cart buttons, Next arrow)
 
-        System.out.println(driver.findElement(arrowUPs).isDisplayed());
-        homePage.clickOnArrowUp();
-        Thread.sleep(500); /* To give the page time to get on top */
-        System.out.println(driver.findElement(arrowUPs).isDisplayed());
-        softAssert.assertFalse(homePage.checkArrowUpDisplay());
+    System.out.println(driver.findElement(arrowUPs).isDisplayed());
+    homePage.clickOnArrowUp();
+    Thread.sleep(500); /* To give the page time to get on top */
+    System.out.println(driver.findElement(arrowUPs).isDisplayed());
+    softAssert.assertFalse(homePage.checkArrowUpDisplay());
 
 // Assert Category Section
-        softAssert.assertTrue(homePage.checkCategoryTitleDisplay());
-        softAssert.assertEquals(homePage.checkCategoryTitleValue(),"Category".toUpperCase());
-        softAssert.assertTrue(homePage.checkWomenPlusIconDisplay());
-        softAssert.assertEquals(homePage.checkWomenListIconValue(),"WOMEN");
-        homePage.clickOnWomenPlusIcon();
-        softAssert.assertTrue(homePage.checkWomenListDisplay());
-        Thread.sleep(200);
+    softAssert.assertTrue(homePage.checkCategoryTitleDisplay());
+    softAssert.assertEquals(homePage.checkCategoryTitleValue(),"Category".toUpperCase());
+    softAssert.assertTrue(homePage.checkWomenPlusIconDisplay());
+    softAssert.assertEquals(homePage.checkWomenListIconValue(),"WOMEN");
+    homePage.clickOnWomenPlusIcon();
+    softAssert.assertTrue(homePage.checkWomenListDisplay());
+    Thread.sleep(200);
         System.out.println("This is the Woman Section options:");
         System.out.println(homePage.checkWomenListValue());
         System.out.println("==============================");
-        softAssert.assertTrue(homePage.checkMenPlusIconDisplay());
-        softAssert.assertEquals(homePage.checkMenListIconValue(),"MEN");
+    softAssert.assertTrue(homePage.checkMenPlusIconDisplay());
+    softAssert.assertEquals(homePage.checkMenListIconValue(),"MEN");
         homePage.clickOnMenPlusIcon();
-        softAssert.assertTrue(homePage.checkMenListDisplay());
-        Thread.sleep(200);
+    softAssert.assertTrue(homePage.checkMenListDisplay());
+    Thread.sleep(200);
         System.out.println("This is the Man Section options:");
         System.out.println(homePage.checkMenListValue());
         System.out.println("==============================");
-        softAssert.assertTrue(homePage.checkKidsPlusIconDisplay());
-        softAssert.assertEquals(homePage.checkKidsListIconValue(),"KIDS");
+    softAssert.assertTrue(homePage.checkKidsPlusIconDisplay());
+    softAssert.assertEquals(homePage.checkKidsListIconValue(),"KIDS");
         homePage.clickOnKidsPlusIcon();
-        softAssert.assertTrue(homePage.checkKidsListDisplay());
-        Thread.sleep(200);
+    softAssert.assertTrue(homePage.checkKidsListDisplay());
+    Thread.sleep(200);
         System.out.println("This is the Kids Section options:");
         System.out.println(homePage.checkKidsListValue());
         System.out.println("==============================");
@@ -111,7 +111,7 @@ public class HomePageTest extends BaseTest {
                 "KOOKIE KIDS, (5)\n" +
                 "BIBA]");
 
-        softAssert.assertAll();
+    softAssert.assertAll();
     }
 
     @Test(priority = 1)
@@ -119,31 +119,33 @@ public class HomePageTest extends BaseTest {
         homePage = new HomePage(driver);
         softAssert = new SoftAssert();
 
-        homePage.clickOnProductsPage();
+    homePage.clickOnProductsPage();
 //    softAssert.assertTrue(homePage.checkProd);
 //    softAssert.assertEquals(homePage);
-        homePage.clickOnCartPage();
-        homePage.clickOnSignUpPage();
-        homePage.clickOnContactUsPage();
-        homePage.clickOnHomeButton();
+    homePage.clickOnCartPage();
+    homePage.clickOnSignUpPage();
+    homePage.clickOnContactUsPage();
+    homePage.clickOnHomeButton();
 
 //Category Section
-        homePage.clickOnWomenPlusIcon();
-        homePage.clickOnWomenListOptions();
-        homePage.clickOnMenPlusIcon();
-        homePage.clickOnMenListOptions();
-        homePage.clickOnKidsPlusIcon();
-        homePage.clickOnKidsListOptions();
+    homePage.clickOnWomenPlusIcon();
+    homePage.clickOnWomenListOptions(); //Include Page Title Assertion to ensure the right page is opened
+    homePage.clickOnMenPlusIcon();
+    homePage.clickOnMenListOptions();//Include Page Title Assertion to ensure the right page is opened
+    homePage.clickOnKidsPlusIcon();
+    homePage.clickOnKidsListOptions();//Include Page Title Assertion to ensure the right page is opened
 
 //Brands Section
-        homePage.clickOnBrandsOptions();
+    homePage.clickOnBrandsOptions();//Include Page Title Assertion to ensure the right page is opened
 //    homePage.clickOnYoutubeIcon();
-        homePage.clickOnHomeButton();
+    homePage.clickOnHomeButton();
     }
 
     @Test(priority = 2)
     public void Validate_User_Can_Add_To_Cart(){
         homePage = new HomePage(driver);
+        softAssert = new SoftAssert();
+        softAssert.assertTrue(homePage.checkHomePageTitle());
         homePage.clickAddToCart();
     }
 
@@ -217,7 +219,8 @@ public class HomePageTest extends BaseTest {
         homePage = new HomePage(driver);
         softAssert = new SoftAssert();
 
-        softAssert.assertEquals(homePage.checkForWrongValue(),"Sleeveless Dress".equalsIgnoreCase("Sleeveless Dress"));
+        homePage.clickOnHomeButton();
+        softAssert.assertNotEquals(homePage.checkForWrongValue(),"Sleeveless Dress");
         softAssert.assertAll();
     }
 }

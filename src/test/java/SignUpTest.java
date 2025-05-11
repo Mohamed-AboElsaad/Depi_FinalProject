@@ -90,5 +90,6 @@ public class SignUpTest extends BaseTest{
         sign.setLoginEmailField(email);
         sign.setLoginPassField(pass);
         sign.clickOnLoginCTA();
+        softAssert.assertAll();
     }
 }
