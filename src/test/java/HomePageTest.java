@@ -1,4 +1,6 @@
+import Pages.Cart;
 import Pages.HomePage;
+import Pages.ProductPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -15,6 +17,8 @@ import java.util.List;
 public class HomePageTest extends BaseTest {
     public SoftAssert softAssert;
     HomePage homePage;
+    ProductPage productPage;
+    Cart cart;
     By arrowUPs = By.xpath("//i[@class='fa fa-angle-up']");
 
 //    @AfterMethod
@@ -153,18 +157,20 @@ public class HomePageTest extends BaseTest {
     public void Validate_Product_View_Page_Details(){
         homePage = new HomePage(driver);
         softAssert = new SoftAssert();
+        homePage.clickOnHomeButton();
+        homePage.clickViewProduct(20);
+        productPage = new ProductPage(driver);
 
-        homePage.clickViewProduct();
 
-        softAssert.assertTrue(driver.findElement(By.xpath("//h2[contains(@class,'name')]")).isDisplayed(),
+        softAssert.assertTrue(productPage.productNameDisplay(),
                 "Product name not displayed");
-        softAssert.assertTrue(driver.findElement(By.xpath("//p[contains(text(),'Category')]")).isDisplayed(),
+        softAssert.assertTrue(productPage.productCategoryDisplay(),
                 "Category not displayed");
-        softAssert.assertTrue(driver.findElement(By.xpath("//span[contains(@class,'price')]")).isDisplayed(),
+        softAssert.assertTrue(productPage.productPriceDisplay(),
                 "Price not displayed");
-        softAssert.assertTrue(driver.findElement(By.id("quantity")).isDisplayed(),
+        softAssert.assertTrue(productPage.productQuantityDisplay(),
                 "Quantity input not displayed");
-        softAssert.assertTrue(driver.findElement(By.xpath("//button[contains(text(),'Add to cart')]")).isDisplayed(),
+        softAssert.assertTrue(productPage.addToCartDisplay(),
                 "Add to cart button not displayed");
 
         softAssert.assertAll();
@@ -174,7 +180,8 @@ public class HomePageTest extends BaseTest {
     public void Validate_Product_Quantity_Update(){
         homePage = new HomePage(driver);
 
-        homePage.clickViewProduct();
+        homePage.clickOnHomeButton();
+        homePage.clickViewProduct(32);
 
         WebElement quantityInput = driver.findElement(By.id("quantity"));
         String newQuantity = "3";
@@ -188,13 +195,17 @@ public class HomePageTest extends BaseTest {
     @Test(priority = 5)
     public void Validate_Add_To_Cart_From_Product_Page(){
         homePage = new HomePage(driver);
+        productPage = new ProductPage(driver);
 
-        homePage.clickViewProduct();
+//        homePage.clickViewProduct();
 
-        driver.findElement(By.xpath("//button[contains(text(),'Add to cart')]")).click();
+        driver.findElement(By.xpath("//button[@type='button']")).click();
 
-        Assert.assertTrue(driver.findElement(By.xpath("//u[contains(text(),'View Cart')]")).isDisplayed(),
+        Assert.assertTrue(productPage.viewCartButtonDisplay(),
                 "View Cart button not displayed after adding to cart");
+
+        productPage.clickOnContinueButton();
+        homePage.clickOnHomeButton();
     }
 
     @Test(priority = 6)
@@ -202,10 +213,11 @@ public class HomePageTest extends BaseTest {
         homePage = new HomePage(driver);
         softAssert = new SoftAssert();
 
-        for(int i = 0; i < 3; i++) {
-            homePage.clickViewProduct();
 
-            softAssert.assertTrue(driver.findElement(By.xpath("//h2[contains(@class,'name')]")).isDisplayed(),
+        for(int i = 0; i < 3; i++) {
+            homePage.clickViewProduct(19);
+
+            softAssert.assertTrue(productPage.productNameDisplay(),
                     "Product name not displayed on attempt " + (i+1));
 
             driver.navigate().back();

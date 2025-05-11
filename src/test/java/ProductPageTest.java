@@ -6,42 +6,45 @@ import org.testng.asserts.SoftAssert;
 public class ProductPageTest extends BaseTest {
     HomePage homePage;
     SoftAssert softAssert;
+    ProductPage productPage;
+
     @Test(priority = 1)
     public void testProductNavigationFromHomePage() {
          homePage = new HomePage(driver);
          softAssert = new SoftAssert();
 
         // Verify featured products exist
-        int productCount = homePage.getFeaturedProductsCount();
+        int productCount = homePage.getFeatureProductsCount();
         softAssert.assertTrue(productCount > 0, "No featured products found");
 
         // Test first product
-        String homePageProductName = homePage.getProductName(0);
-        String homePageProductPrice = homePage.getProductPrice(0);
-
+        String homePageProductName = homePage.getProductNameOfHomePage(0);
+        String homePageProductPrice = homePage.getFeatureProductPriceOfHomePage(0);
         // Navigate to product details
         homePage.clickViewProduct(0);
 
         // Verify product details page
-        ProductPage productPage = new ProductPage(driver);
+        productPage = new ProductPage(driver);
         softAssert.assertEquals(productPage.getProductName(), homePageProductName,
                 "Product name doesn't match");
-        softAssert.assertTrue(productPage.getProductPrice().contains(homePageProductPrice),
+        softAssert.assertEquals(productPage.getProductPrice(),homePageProductPrice,
                 "Product price doesn't match");
-
+        homePage.clickOnHomeButton();
         softAssert.assertAll();
     }
 
     @Test(priority = 2)
     public void testAddToCartFromProductPage() {
         homePage = new HomePage(driver);
+        productPage = new ProductPage(driver);
+
         homePage.clickViewProduct(0);
 
-        ProductPage productPage = new ProductPage(driver);
+
         productPage.setQuantity(2);
         productPage.clickAddToCart();
         productPage.clickViewCart();
-
+    homePage.clickOnHomeButton();
         // Here you would add cart verification
         // For example:
         // CartPage cartPage = new CartPage(driver);
@@ -51,7 +54,8 @@ public class ProductPageTest extends BaseTest {
     @Test(priority = 3)
     public void testMultipleProductNavigation() {
          homePage = new HomePage(driver);
-        int productCount = homePage.getFeaturedProductsCount();
+         softAssert = new SoftAssert();
+        int productCount = homePage.getFeatureProductsCount();
 
 
         // Test navigating to each product

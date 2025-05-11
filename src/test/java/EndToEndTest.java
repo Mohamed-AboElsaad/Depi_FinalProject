@@ -42,6 +42,7 @@ public class EndToEndTest extends BaseTest {
         signUpPage.clickOnContinueButton();
 
         // 4. Add product to cart
+//        homePage.clickOnHomeButton();
         homePage.clickViewProduct();
         productPage.setQuantity(4);
         productPage.clickAddToCart();

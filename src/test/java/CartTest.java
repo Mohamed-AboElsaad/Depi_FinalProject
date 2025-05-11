@@ -35,7 +35,7 @@ public class CartTest extends BaseTest{
         softAssert = new SoftAssert();
 
         Assert.assertTrue(cart.checkCheckoutTitleDisplay());
-        cart.addOrderComment("Test order");
+        cart.addOrderComment("⦿ B E S T   T E A M ⦿ → ★ B E S T   T E A M ★");
         cart.clickPlaceOrder();
         Assert.assertTrue(cart.checkPaymentPageTitleDisplay());
         softAssert.assertEquals(cart.checkPaymentPageTitleValue(),"Payment");

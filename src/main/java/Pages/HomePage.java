@@ -2,6 +2,7 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
 
 import java.util.Arrays;
@@ -96,7 +97,11 @@ public class HomePage extends BasePage {
     By kookieKidsPageTitle = By.xpath("//h2[@class='title text-center']");
     By biba = By.xpath("//a[@href='/brand_products/Biba']");
     By bibaPageTitle = By.xpath("//h2[@class='title text-center']");
-
+    By productNames = By.xpath("//div[contains(@class,'productinfo')]//p");
+    By productPrices = By.xpath("//div[contains(@class,'productinfo')]//h2");
+    By featuredProducts = By.xpath("//div[contains(@class,'productinfo')]");
+    By productNamesOfHomePage = By.xpath("//div[@class='productinfo text-center']//p[normalize-space()]");
+    By productPricesOfHomePage = By.xpath("//div[@class='productinfo text-center']//h2[normalize-space()]");
 
 // Methods Section
     /* Top Section Methods*/
@@ -563,13 +568,16 @@ public class HomePage extends BasePage {
         int counter = 0;
         for (int i = 0; i < j; i++) {
             int random = (int) (Math.random() * j);
-            if (checkingDisplay(addToCartButton) && counter<3) {
+            if (checkingEnabled(addToCartButton) && counter<3) {
                 elementsList(viewProductButton, random);
                 counter++;
             }else continue;
         }
     }
-
+    public void clickViewProduct(int index) {
+        waitUntilElementIsClickable(viewProductButton,10);
+        elementsList(viewProductButton,index);
+    }
     public void clickOnArrowUp(){
         clickOn(arrowUP);
     }
@@ -599,5 +607,25 @@ public class HomePage extends BasePage {
        waitUntilElementIsVisible(youtubeTutorialButton,5);
         clickOn(youtubeTutorialButton);
     }
+    public int getFeatureProductsCount() {
+        waitUntilElementIsVisible(featuredProducts, 5);
+        return getElementsListSize(featuredProducts);
+    }
 
+    public String getProductName(int index) {
+        waitUntilElementIsVisible(productNames, 5);
+       return elementsListValue(productNames,index);
+    }
+    public String getProductNameOfHomePage(int index) {
+        waitUntilElementIsVisible(productNamesOfHomePage, 5);
+        return elementsListValue(productNamesOfHomePage,index);
+    }
+    public String getFeatureProductPrice(int index) {
+        waitUntilElementIsVisible(productPrices, 5);
+       return elementsListValue(productPrices,index);
+    }
+    public String getFeatureProductPriceOfHomePage(int index) {
+        waitUntilElementIsVisible(productPricesOfHomePage, 5);
+        return elementsListValue(productPricesOfHomePage,index);
+    }
 }

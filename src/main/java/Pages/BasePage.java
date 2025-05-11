@@ -83,6 +83,12 @@ public class BasePage {
         List<WebElement> elements = driver.findElements(by);
         elements.get(i).click();
     }
+    public String elementsListValue(By by, int i) {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        List<WebElement> elements = driver.findElements(by);
+       return elements.get(i).getText();
+    }
 
     public int getElementsListSize(By by) {
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
