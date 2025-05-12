@@ -40,14 +40,17 @@ public class CartTest extends BaseTest{
         Assert.assertTrue(cart.checkPaymentPageTitleDisplay());
         softAssert.assertEquals(cart.checkPaymentPageTitleValue(),"Payment");
         cart.enterPaymentDetails("Test User", "4111111111111111", "123", "12", "2025");
+        takeScreenshot("Payment Details Succeeded");
         cart.clickOnPayButton();
 
         Assert.assertEquals(cart.checkOrderPlacedSuccessfullyMessageValue(),"Order Placed!".toUpperCase());
         softAssert.assertTrue(cart.checkDownloadInvoiceCTADisplay());
+        takeScreenshot("Order Purchased Successfully");
         cart.clickOnContinueButton();
         homePage.clickOnDeleteAccButton();
         Assert.assertTrue(cart.checkAccountDeletedMessageDisplay());
         softAssert.assertEquals(cart.checkAccountDeletedMessageValue(),"Account Deleted!".toUpperCase());
+        takeScreenshot("Account Deleted Successfully");
         cart.clickOnContinueButton();
         softAssert.assertAll();
     }

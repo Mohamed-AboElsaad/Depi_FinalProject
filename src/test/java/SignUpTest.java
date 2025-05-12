@@ -73,6 +73,7 @@ public class SignUpTest extends BaseTest{
 
         Assert.assertTrue(sign.checkAccountCreatedMessageDisplay());
         softAssert.assertEquals(sign.accountCreatedMessageValue(),"Account Created!");
+        takeScreenshot("SignUp Successfully");
         sign.clickOnContinueButton();
 
     }
@@ -90,6 +91,7 @@ public class SignUpTest extends BaseTest{
         sign.setLoginEmailField(email);
         sign.setLoginPassField(pass);
         sign.clickOnLoginCTA();
+        takeScreenshot("Login Successfully");
         softAssert.assertAll();
     }
 }
