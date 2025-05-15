@@ -221,6 +221,7 @@ public class HomePage extends BasePage {
         if (!checkingEnabled(recommendedItemButtonParameter)){
             clickOn(nextArrow);
         }
+        waitUntilElementIsVisible(wrongValue,5);
         return getText(wrongValue);
     }
 
