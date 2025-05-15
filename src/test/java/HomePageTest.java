@@ -215,7 +215,7 @@ public class HomePageTest extends BaseTest {
 
 
         for(int i = 0; i < 3; i++) {
-            homePage.clickViewProduct(19);
+            homePage.clickViewProduct((int)(Math.random()*12));
 
             softAssert.assertTrue(productPage.productNameDisplay(),
                     "Product name not displayed on attempt " + (i+1));
