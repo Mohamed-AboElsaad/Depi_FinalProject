@@ -29,7 +29,7 @@ public class HomePage extends BasePage {
     By recommendedItemsTitle = By.xpath("//h2[normalize-space()='recommended items']");
     By recommendedItemButtonParameter = By.xpath("/html[1]/body[1]/section[2]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
     By nextArrow = By.xpath("//a[@class='right recommended-item-control']//i[@class='fa fa-angle-right']");
-    By wrongValue = By.xpath("//div[@class='productinfo text-center']//p[normalize-space()='Rs. 1000']");
+    By wrongValue = By.xpath("//div[@class='productinfo text-center']//p[normalize-space() = 'Rs. 1000']");
     By continueShoppingButton = By.xpath("//button[@class='btn btn-success close-modal btn-block']");
     By viewCartButton = By.xpath("//u[normalize-space()='View Cart']");
     By viewProductButton = By.xpath("//ul[@class='nav nav-pills nav-justified']//a[contains(@href,'product_details')]");
