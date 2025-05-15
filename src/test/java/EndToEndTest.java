@@ -52,17 +52,13 @@ public class EndToEndTest extends BaseTest {
         cartPage.clickOnCheckOutCTA();
 
         // 6. Verify checkout and place order
+        String asciiArt =
+                "+----------------------+\n" +
+                        "|  GOOD BYE            |\n" +
+                        "|  GOOD FRIENDS        |\n" +
+                        "+----------------------+";
         checkoutPage.verifyAddressesDisplayed();
-        checkoutPage.addOrderComment("• • • • • • • • • • • • • • • • • • • • • •\n" +
-                "• M • O • S • T •   • S • U • C • C • E • S • S • F • U • L •\n" +
-                "•   • T • E • S • T •   • C • A • S • E •   •\n" +
-                "• • • • • • • • • • • • • • • • • • • • • •\n" +
-                "\n" +
-                "• F • O • R •   • B • E • S • T •   • H • A • P • P • Y •\n" +
-                "•   • S • C • E • N • A • R • I • O •   •\n" +
-                "• • • • • • • • • • • • • • • • • • • • • •\n" +
-                "\n" +
-                "⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫ • D • R • E • A • M •   • T • E • A • M • ⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫");
+        checkoutPage.addOrderComment(asciiArt);
         Thread.sleep(2000);
         checkoutPage.clickPlaceOrder();
 
